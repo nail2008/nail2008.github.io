@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nail2008.github.io/"/>
-  <updated>2016-08-10T03:23:45.000Z</updated>
+  <updated>2016-08-24T09:55:42.000Z</updated>
   <id>https://nail2008.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Npm使用</title>
+    <link href="https://nail2008.github.io/2016/08/24/how-to-use-npm/"/>
+    <id>https://nail2008.github.io/2016/08/24/how-to-use-npm/</id>
+    <published>2016-08-24T01:05:53.000Z</published>
+    <updated>2016-08-24T09:55:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="网上的教程"><a href="#网上的教程" class="headerlink" title="网上的教程"></a>网上的教程</h2><p>网上有很多,不废话了:</p>
+<ul>
+<li><a href="https://docs.npmjs.com/" target="_blank" rel="external">官方教程</a></li>
+<li><a href="http://www.cnblogs.com/fsjohnhuang/p/4178019.html" target="_blank" rel="external">NPM入了个门</a></li>
+<li><a href="http://www.runoob.com/nodejs/nodejs-npm.html" target="_blank" rel="external">菜鸟教程</a></li>
+</ul>
+<h2 id="网上说得不太清除的几个事儿"><a href="#网上说得不太清除的几个事儿" class="headerlink" title="网上说得不太清除的几个事儿"></a>网上说得不太清除的几个事儿</h2><h3 id="依赖版本中使用-和-的区别"><a href="#依赖版本中使用-和-的区别" class="headerlink" title="依赖版本中使用 ~ 和 ^ 的区别"></a>依赖版本中使用 ~ 和 ^ 的区别</h3><p>这个问题其实说的是<strong>语义化版本SemVer</strong></p>
+<p><a href="http://www.u396.com/semver-range.html" target="_blank" rel="external">语义化版本（SemVer）的范围</a> 一文是网上搜到的质量较好的中文解释。<br>但其中对~的用法没说,解释如下:</p>
+<p>假设版本号为:x.y.z</p>
+<h4 id=""><a href="#" class="headerlink" title="~"></a>~</h4><p>~x 表示 x.不能变,后边的随便</p>
+<p>~x.y 表示 x.y.不能变,后边的随便</p>
+<p>~x.y.z 表示 x.y.不能变,后边的随便</p>
+<p>~x.y.z-beta1 表示 ~x.y.z-不能变,后边的随便</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h4><p>^x.y.z 表示x、y、z中从左往右,第一个非零位往左(包括该非零位)不能变,右边的随便</p>
+<p>关于semver的一些资料:<br><a href="http://semver.org/" target="_blank" rel="external">http://semver.org/</a><br><a href="https://cnpmjs.org/package/semver" target="_blank" rel="external">https://cnpmjs.org/package/semver</a><br><a href="https://docs.npmjs.com/misc/semver" target="_blank" rel="external">https://docs.npmjs.com/misc/semver</a>   </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;网上的教程&quot;&gt;&lt;a href=&quot;#网上的教程&quot; class=&quot;headerlink&quot; title=&quot;网上的教程&quot;&gt;&lt;/a&gt;网上的教程&lt;/h2&gt;&lt;p&gt;网上有很多,不废话了:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.npmjs.com/&quot;
+    
+    </summary>
+    
+      <category term="开发工具" scheme="https://nail2008.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="npm" scheme="https://nail2008.github.io/tags/npm/"/>
+    
+  </entry>
   
   <entry>
     <title>Shell指令大全(Mac版)</title>
