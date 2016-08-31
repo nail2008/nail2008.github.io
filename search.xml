@@ -4,6 +4,15 @@
   
     
     <entry>
+      <title><![CDATA[CSS3布局属性总结]]></title>
+      <url>https://nail2008.github.io/2016/08/29/css3-layout-features/</url>
+      <content type="html"><![CDATA[<p>发现个不错的CSS布局教程——<a href="http://zh.learnlayout.com/" target="_blank" rel="external">学习Css布局</a><br>用<a href="http://codepen.io/collection/XpbVGg/" target="_blank" rel="external">codepen</a>边学边做,练习了一下。</p>
+<p>其他资料:</p>
+<p><a href="http://www.jikexueyuan.com/course/1403.html" target="_blank" rel="external">CSS3布局属性全接触@极客学院</a><br><a href="https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/" target="_blank" rel="external">Flexbox Playground</a>  </p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[老浏览器支持HTML5和CSS3]]></title>
       <url>https://nail2008.github.io/2016/08/25/html5-css3-support-in-old-browser/</url>
       <content type="html"><![CDATA[<h2 id="HTML5支持"><a href="#HTML5支持" class="headerlink" title="HTML5支持"></a>HTML5支持</h2><p>使用<strong>html5shiv</strong>可以使IE6、7、8等浏览器也支持HTML5，只要在页面引入下面的代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[if lt IE 9]&gt;</div><div class="line">    &lt;script src="bower_components/html5shiv/dist/html5shiv.js"&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure></p>
