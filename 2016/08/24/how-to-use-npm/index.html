@@ -96,8 +96,8 @@
 NPM入了个门
 菜鸟教程
 
-网上说得不太清除的几个事儿依赖版本中使用 ~ 和 ^ 的区别这个问题其实说的是语义化版本SemVer。语义化版本（SemVer）的范围 一文是网上搜到的质量较好的中文解释。但其中对~的用法没说,解释如下:假设版本号为:x.y.z  
-~~x 表示 x.不能变,后边的随便~x.y 表示 x.y.不能变,后边的随便~x.y.z">
+常用命令1npm ls jquery
+12345cdp-ui duanyiding$ npm ls jquerycdp-ui@0.0.1 /Users/duanyiding/WebstormProjects/cdp-ui`-- rc-queue-anim@0.12.4  `-- velocity-animate@1.2.3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Npm使用">
 <meta property="og:url" content="https://nail2008.github.io/2016/08/24/how-to-use-npm/index.html">
@@ -108,9 +108,9 @@ NPM入了个门
 NPM入了个门
 菜鸟教程
 
-网上说得不太清除的几个事儿依赖版本中使用 ~ 和 ^ 的区别这个问题其实说的是语义化版本SemVer。语义化版本（SemVer）的范围 一文是网上搜到的质量较好的中文解释。但其中对~的用法没说,解释如下:假设版本号为:x.y.z  
-~~x 表示 x.不能变,后边的随便~x.y 表示 x.y.不能变,后边的随便~x.y.z">
-<meta property="og:updated_time" content="2016-08-24T10:01:42.000Z">
+常用命令1npm ls jquery
+12345cdp-ui duanyiding$ npm ls jquerycdp-ui@0.0.1 /Users/duanyiding/WebstormProjects/cdp-ui`-- rc-queue-anim@0.12.4  `-- velocity-animate@1.2.3">
+<meta property="og:updated_time" content="2016-09-02T08:02:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Npm使用">
 <meta name="twitter:description" content="网上的教程网上有很多,不废话了:
@@ -119,8 +119,8 @@ NPM入了个门
 NPM入了个门
 菜鸟教程
 
-网上说得不太清除的几个事儿依赖版本中使用 ~ 和 ^ 的区别这个问题其实说的是语义化版本SemVer。语义化版本（SemVer）的范围 一文是网上搜到的质量较好的中文解释。但其中对~的用法没说,解释如下:假设版本号为:x.y.z  
-~~x 表示 x.不能变,后边的随便~x.y 表示 x.y.不能变,后边的随便~x.y.z">
+常用命令1npm ls jquery
+12345cdp-ui duanyiding$ npm ls jquerycdp-ui@0.0.1 /Users/duanyiding/WebstormProjects/cdp-ui`-- rc-queue-anim@0.12.4  `-- velocity-animate@1.2.3">
 
 
 
@@ -373,6 +373,8 @@ NPM入了个门
 <li><a href="http://www.cnblogs.com/fsjohnhuang/p/4178019.html" target="_blank" rel="external">NPM入了个门</a></li>
 <li><a href="http://www.runoob.com/nodejs/nodejs-npm.html" target="_blank" rel="external">菜鸟教程</a></li>
 </ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm ls jquery</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cdp-ui duanyiding$ npm ls jquery</div><div class="line">cdp-ui@0.0.1 /Users/duanyiding/WebstormProjects/cdp-ui</div><div class="line">`-- rc-queue-anim@0.12.4</div><div class="line">  `-- velocity-animate@1.2.3</div><div class="line">    `-- jquery@3.1.0</div></pre></td></tr></table></figure>
 <h2 id="网上说得不太清除的几个事儿"><a href="#网上说得不太清除的几个事儿" class="headerlink" title="网上说得不太清除的几个事儿"></a>网上说得不太清除的几个事儿</h2><h3 id="依赖版本中使用-和-的区别"><a href="#依赖版本中使用-和-的区别" class="headerlink" title="依赖版本中使用 ~ 和 ^ 的区别"></a>依赖版本中使用 ~ 和 ^ 的区别</h3><p>这个问题其实说的是<strong>语义化版本SemVer</strong>。<br><a href="http://www.u396.com/semver-range.html" target="_blank" rel="external">语义化版本（SemVer）的范围</a> 一文是网上搜到的质量较好的中文解释。<br>但其中对~的用法没说,解释如下:<br>假设版本号为:x.y.z  </p>
 <h4 id=""><a href="#" class="headerlink" title="~"></a>~</h4><p>~x 表示 x.不能变,后边的随便<br>~x.y 表示 x.y.不能变,后边的随便<br>~x.y.z 表示 x.y.不能变,后边的随便<br>~x.y.z-beta1 表示 ~x.y.z-不能变,后边的随便  </p>
 <h4 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h4><p>^x.y.z 表示x、y、z中从左往右,第一个非零位往左(包括该非零位)不能变,右边的随便  </p>
@@ -574,7 +576,7 @@ NPM入了个门
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网上的教程"><span class="nav-number">1.</span> <span class="nav-text">网上的教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网上说得不太清除的几个事儿"><span class="nav-number">2.</span> <span class="nav-text">网上说得不太清除的几个事儿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖版本中使用-和-的区别"><span class="nav-number">2.1.</span> <span class="nav-text">依赖版本中使用 ~ 和 ^ 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">2.1.1.</span> <span class="nav-text">~</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">^</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网上的教程"><span class="nav-number">1.</span> <span class="nav-text">网上的教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网上说得不太清除的几个事儿"><span class="nav-number">3.</span> <span class="nav-text">网上说得不太清除的几个事儿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖版本中使用-和-的区别"><span class="nav-number">3.1.</span> <span class="nav-text">依赖版本中使用 ~ 和 ^ 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">3.1.1.</span> <span class="nav-text">~</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">^</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
