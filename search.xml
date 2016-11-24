@@ -98,6 +98,43 @@
 <h3 id="npm-info-view-module-name"><a href="#npm-info-view-module-name" class="headerlink" title="npm info(view) module_name"></a>npm info(view) module_name</h3><p>列出详细信息，如果只想查看版本：npm info module_name versions  </p>
 <h3 id="npm-outdated"><a href="#npm-outdated" class="headerlink" title="npm outdated"></a>npm outdated</h3><p>检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新   </p>
 <h3 id="npm-root-g"><a href="#npm-root-g" class="headerlink" title="npm root -g"></a>npm root -g</h3><p>查看全局的包的安装路径  </p>
+<h2 id="常用命令简写"><a href="#常用命令简写" class="headerlink" title="常用命令简写"></a>常用命令简写</h2><ul>
+<li>-v: –version</li>
+<li>-h, -?, –help, -H: –usage</li>
+<li>-s, –silent: –loglevel silent</li>
+<li>-q, –quiet: –loglevel warn</li>
+<li>-d: –loglevel info</li>
+<li>-dd, –verbose: –loglevel verbose</li>
+<li>-ddd: –loglevel silly</li>
+<li>-g: –global</li>
+<li>-C: –prefix</li>
+<li>-l: –long</li>
+<li>-m: –message</li>
+<li>-p, –porcelain: –parseable</li>
+<li>-reg: –registry</li>
+<li>-f: –force</li>
+<li>-desc: –description</li>
+<li>-S: –save</li>
+<li>-D: –save-dev</li>
+<li>-O: –save-optional</li>
+<li>-B: –save-bundle</li>
+<li>-E: –save-exact</li>
+<li>-y: –yes</li>
+<li>-n: –yes false</li>
+<li>ll and la commands: ls –long</li>
+</ul>
+<h2 id="使用淘宝镜像"><a href="#使用淘宝镜像" class="headerlink" title="使用淘宝镜像"></a>使用淘宝镜像</h2><p>不适用cnpm，但是使用淘宝镜像，有以下三种方式，推荐第三种：</p>
+<ol>
+<li><p>通过 config 配置指向国内镜像源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm config set registry http://registry.cnpmjs.org //配置指向源</div><div class="line">npm info express  //下载安装第三方包</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过 npm 命令指定下载源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm --registry http://registry.cnpmjs.org info express</div></pre></td></tr></table></figure>
+</li>
+<li><p>在配置文件 ~/.npmrc 文件写入源地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nano ~/.npmrc   //打开配置文件</div><div class="line">registry =https://registry.npm.taobao.org   //写入配置文件</div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="网上说得不太清除的几个事儿"><a href="#网上说得不太清除的几个事儿" class="headerlink" title="网上说得不太清除的几个事儿"></a>网上说得不太清除的几个事儿</h2><h3 id="依赖版本中使用-和-的区别"><a href="#依赖版本中使用-和-的区别" class="headerlink" title="依赖版本中使用 ~ 和 ^ 的区别"></a>依赖版本中使用 ~ 和 ^ 的区别</h3><p>这个问题其实说的是<strong>语义化版本SemVer</strong>。<br><a href="http://www.u396.com/semver-range.html" target="_blank" rel="external">语义化版本（SemVer）的范围</a> 一文是网上搜到的质量较好的中文解释。<br>但其中对~的用法没说,解释如下:<br>假设版本号为:x.y.z  </p>
 <h4 id=""><a href="#" class="headerlink" title="~"></a>~</h4><p>~x 表示 x.不能变,后边的随便<br>~x.y 表示 x.y.不能变,后边的随便<br>~x.y.z 表示 x.y.不能变,后边的随便<br>~x.y.z-beta1 表示 ~x.y.z-不能变,后边的随便  </p>
 <h4 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h4><p>^x.y.z 表示x、y、z中从左往右,第一个非零位往左(包括该非零位)不能变,右边的随便  </p>
