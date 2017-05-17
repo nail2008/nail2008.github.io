@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nail2008.github.io/"/>
-  <updated>2016-08-31T10:45:35.000Z</updated>
+  <updated>2017-05-17T09:41:49.000Z</updated>
   <id>https://nail2008.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ehcache Monitor 安装及使用</title>
+    <link href="https://nail2008.github.io/2017/05/17/how-to-use-ehcache-monitor/"/>
+    <id>https://nail2008.github.io/2017/05/17/how-to-use-ehcache-monitor/</id>
+    <published>2017-05-17T08:47:36.000Z</published>
+    <updated>2017-05-17T09:41:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.ehcache.org/" target="_blank" rel="external">Ehcache</a>是Java常用的缓存方案，由于直接运行在JVM里，所以还是有很多场合是Redis无法替代的。</p>
+<p>监控Ehcache的手段比较单一，只有Ehcache-Monitor，当然也有<a href="http://blog.csdn.net/wiker_yong/article/details/52068420" target="_blank" rel="external">自己实现的方法</a>。</p>
+<p>查看了不少相关资料，很多链接都不好使了，因为Ehcache的官网改版了。而且似乎刻意去掉了Monitor的信息，官方下载也没有了。</p>
+<p>以下是我找到的1.0.3版下载地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://terracotta.org/downloads/open-source/destination?name=ehcache-monitor-kit-1.0.3-distribution.tar.gz&amp;bucket=tcdistributions&amp;file=ehcache-monitor-kit-1.0.3-distribution.tar.gz</div></pre></td></tr></table></figure></p>
+<p>看README.txt这货针对不同Ehcache不同版本使用方法可能有区别，貌似各版本都能用。我使用的是2.5.1，使用正常。</p>
+<p>安装方法最详细的还是官方pdf文档，中文的可以看下面两篇：<br><a href="http://hck.iteye.com/blog/1732660" target="_blank" rel="external">http://hck.iteye.com/blog/1732660</a><br><a href="http://www.yuananan.cn/html/article/AR64m1684VKax5Ahhp53gp.html" target="_blank" rel="external">http://www.yuananan.cn/html/article/AR64m1684VKax5Ahhp53gp.html</a></p>
+<p>注意注释掉启动文件<code>ehcache-monitor-kit-1.0.3\bin\startup.bat</code>里：<code>-j %PRGDIR%\etc\jetty.xml ^</code>行。</p>
+<p>官方参考：<br><a href="http://www.ehcache.org/documentation/ehcache-2.5.x-documentation.pdf" target="_blank" rel="external">http://www.ehcache.org/documentation/ehcache-2.5.x-documentation.pdf</a><br><a href="http://blog.trifork.com/2009/12/22/using-ehcache-monitor/" target="_blank" rel="external">http://blog.trifork.com/2009/12/22/using-ehcache-monitor/</a>  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.ehcache.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Ehcache&lt;/a&gt;是Java常用的缓存方案，由于直接运行在JVM里，所以还是有很多场合是Redis无法替代的。&lt;/p&gt;
+&lt;p&gt;监控Ehcac
+    
+    </summary>
+    
+      <category term="开发工具" scheme="https://nail2008.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="ehcache" scheme="https://nail2008.github.io/tags/ehcache/"/>
+    
+      <category term="ehcache-monitor" scheme="https://nail2008.github.io/tags/ehcache-monitor/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS3布局</title>
