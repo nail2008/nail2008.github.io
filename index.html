@@ -282,6 +282,154 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/16/distributed-ehcache-with-jgroups/" itemprop="url">
+                  Ehcache使用JGroups做组播集群
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-16T16:19:05+08:00" content="2017-06-16">
+              2017-06-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/服务端/" itemprop="url" rel="index">
+                    <span itemprop="name">服务端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/16/distributed-ehcache-with-jgroups/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/16/distributed-ehcache-with-jgroups/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="关于缓存的几点小想法"><a href="#关于缓存的几点小想法" class="headerlink" title="关于缓存的几点小想法"></a>关于缓存的几点小想法</h2><p>开篇先跑跑题。最近在研究集群环境下的缓存同步问题，Web开发领域常见的几种缓存技术：Ehcache、Redis和memcached。<br>Ehcache是我们现在用的，它的最大优点是它是纯Java的，跟应用跑在同一个JVM里，不存在传输上的开销；<br>Redis在用作缓存时常同memcached对比，我们知道他可以做缓存服务之外，其实他本身是个数据库，甚至自身就可以做消息队列。  </p>
+<p>从Ehcache、Redis中的测试报告来看，都说自己更快，这是因为他们都偷换了概念，以己之长比别人的短处。<br>Ehcache长处在JVM运行，但这只是单点，跟Redis比单点肯定有优势。免费方案只能考虑做组播，组播对网络环境要求较高，而且如果集群节点很多，组播次数呈级数上升，形成组播风暴，可用性很差。<br>Redis单点可能比不过Ehcache，但可以集中或集群式部署缓存服务，供分布式系统中的其他业务服务使用。各个节点采用订阅模式，当某一节点相关缓存更新，通知Redis，Redis在发布给订阅的节点更新缓存。有多少节点就发多少次。</p>
+<p>这里不做过多发散，直接说我的小想法——用Ehcache和Redis做二级缓存。<br>Ehcache做一级缓存，查询优先从这里查数据，如果没有再去二级缓存Redis上查找，如果还没有，再去数据库查询。</p>
+<p>但是很不幸。。已经有人这么做过了——<a href="https://www.oschina.net/p/j2cache" target="_blank" rel="external">J2Cache</a><br>思路一致，不过好像太监了。1.3版都没提交中心库。</p>
+<h2 id="Ehcache使用JGroups做组播集群"><a href="#Ehcache使用JGroups做组播集群" class="headerlink" title="Ehcache使用JGroups做组播集群"></a>Ehcache使用JGroups做组播集群</h2><p>那既然组播有缺点，为啥还要写这个呢？因为如果你只是做2-3个节点的负载均衡，其实这东西还是靠谱的，又由于很多资料不靠谱，我觉得还是把我梳理的写出来。</p>
+<p>跑题结束，下面说正事。</p>
+<h3 id="jar依赖添加"><a href="#jar依赖添加" class="headerlink" title="jar依赖添加"></a>jar依赖添加</h3><p><a href="http://www.jgroups.org/manual/index.html#Requirements" target="_blank" rel="external">jgroups官方文档2.1节</a>中有如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">2.1. Requirements</div><div class="line">JGroups up to (and including) 3.5.0.Final requires JDK 6.</div><div class="line"></div><div class="line">JGroups 3.6.x to (excluding) 4.0 requires JDK 7.</div><div class="line"></div><div class="line">JGroups 4.0 will require JDK 8.</div><div class="line"></div><div class="line">There is no JNI code present so JGroups should run on all platforms.</div><div class="line"></div><div class="line">Logging: by default, JGroups tries to use log4j2. If the classes are not found on the classpath, it resorts to log4j, and if still not found, it falls back to java.util.logging logger. See Logging for details on log configuration.</div></pre></td></tr></table></figure></p>
+<ul>
+<li>3.6.0（不含）以下的版本需要JDK6   </li>
+<li>3.6.x 以上到4.0（不含）需要JDK7   </li>
+<li>4.0以上的需要JDK8  </li>
+<li>需要log4j或者log4j2</li>
+</ul>
+<p>比如，我们的一个项目依赖如下：<br>JDK6<br>ehcache-core-2.6.11.jar<br>jgroups-3.5.1.Final.jar  </p>
+<p>另外还需要下面这个jar包，用来整合jgroups和ehcache，点击可以下载：<br><a href="http://mvnrepository.com/artifact/net.sf.ehcache/ehcache-jgroupsreplication/1.7" target="_blank" rel="external">ehcache-jgroupsreplication-1.7.jar</a></p>
+<p>最后还有一些jar包：<br>slf4j-api-1.6.6.jar<br>slf4j-jdk14-1.6.6.jar<br>log4j-1.2.13.jar</p>
+<h3 id="组播策略"><a href="#组播策略" class="headerlink" title="组播策略"></a>组播策略</h3><p>组播策略是我们在编写配置文件前需要考虑的问题，我们选择的是<code>通知失效策略</code>。<br>即各节点独立维护自己的缓存，当一个节点的某缓存发生变化时，并不将改变化同步复制到其他节点。而是通知其他节点清除该缓存。</p>
+<p>选择这种策略的原因是我们的应用服务器在Nginx上使用了<code>IP哈希策略</code>，一个设备的用户请求会固定由一个应用服务器处理。这种情况下，<br>很多数据是不用在其他节点缓存具体数据的，只在自己的节点有就行，使用<code>通知失效策略</code>减小了同步缓存的开销。</p>
+<p>而ehcache可以对不同的数据配置不同的策略，比如<code>在线用户名单</code>之类的全局数据我们依然可以使用同步复制的策略，保持各节点下该缓存的数据是一致的。</p>
+<h3 id="集群策略"><a href="#集群策略" class="headerlink" title="集群策略"></a>集群策略</h3><p>一开始我们用了两台机器，不在同一个网段。采用UDP，自动发现的情况下没有问题；但是采用TCP，指定IP的时候就死活不成功，直到挪到同一台，不同端口才成功。（没试同一网段，以后再说。）</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>需要修改ehcache配置文件<code>ehcache.xml</code>，我还把jgroups的配置文件独立了出来，所以还要新建一个<code>jgroups_tcp.xml</code>。  </p>
+<h4 id="jgroups-tcp-xml"><a href="#jgroups-tcp-xml" class="headerlink" title="jgroups_tcp.xml"></a><code>jgroups_tcp.xml</code></h4><p>官方默认配置例子在jar包里的<code>tcp.xml</code>。下面的例子只修改了两个应用的ip及端口（bind_port、initial_hosts配置），如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line">    TCP based stack, with flow control and message bundling. This is usually used when IP</div><div class="line">    multicasting cannot be used in a network, e.g. because it is disabled (routers discard multicast).</div><div class="line">    Note that TCP.bind_addr and TCPPING.initial_hosts should be set, possibly via system properties, e.g.</div><div class="line">    -Djgroups.bind_addr=192.168.5.2 and -Djgroups.tcpping.initial_hosts=192.168.5.2[7800]</div><div class="line">    author: Bela Ban</div><div class="line">--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">config</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">        <span class="attr">xmlns</span>=<span class="string">"urn:org:jgroups"</span></div><div class="line">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"urn:org:jgroups http://www.jgroups.org/schema/jgroups.xsd"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TCP</span> <span class="attr">bind_port</span>=<span class="string">"40000"</span></span></div><div class="line">         <span class="attr">recv_buf_size</span>=<span class="string">"$&#123;tcp.recv_buf_size:5M&#125;"</span></div><div class="line">         <span class="attr">send_buf_size</span>=<span class="string">"$&#123;tcp.send_buf_size:5M&#125;"</span></div><div class="line">         <span class="attr">max_bundle_size</span>=<span class="string">"64K"</span></div><div class="line">         <span class="attr">max_bundle_timeout</span>=<span class="string">"30"</span></div><div class="line">         <span class="attr">use_send_queues</span>=<span class="string">"true"</span></div><div class="line">         <span class="attr">sock_conn_timeout</span>=<span class="string">"300"</span></div><div class="line"></div><div class="line">         <span class="attr">timer_type</span>=<span class="string">"new3"</span></div><div class="line">         <span class="attr">timer.min_threads</span>=<span class="string">"4"</span></div><div class="line">         <span class="attr">timer.max_threads</span>=<span class="string">"10"</span></div><div class="line">         <span class="attr">timer.keep_alive_time</span>=<span class="string">"3000"</span></div><div class="line">         <span class="attr">timer.queue_max_size</span>=<span class="string">"500"</span></div><div class="line"></div><div class="line">         <span class="attr">thread_pool.enabled</span>=<span class="string">"true"</span></div><div class="line">         <span class="attr">thread_pool.min_threads</span>=<span class="string">"2"</span></div><div class="line">         <span class="attr">thread_pool.max_threads</span>=<span class="string">"8"</span></div><div class="line">         <span class="attr">thread_pool.keep_alive_time</span>=<span class="string">"5000"</span></div><div class="line">         <span class="attr">thread_pool.queue_enabled</span>=<span class="string">"true"</span></div><div class="line">         <span class="attr">thread_pool.queue_max_size</span>=<span class="string">"10000"</span></div><div class="line">         <span class="attr">thread_pool.rejection_policy</span>=<span class="string">"discard"</span></div><div class="line"></div><div class="line">         <span class="attr">oob_thread_pool.enabled</span>=<span class="string">"true"</span></div><div class="line">         <span class="attr">oob_thread_pool.min_threads</span>=<span class="string">"1"</span></div><div class="line">         <span class="attr">oob_thread_pool.max_threads</span>=<span class="string">"8"</span></div><div class="line">         <span class="attr">oob_thread_pool.keep_alive_time</span>=<span class="string">"5000"</span></div><div class="line">         <span class="attr">oob_thread_pool.queue_enabled</span>=<span class="string">"false"</span></div><div class="line">         <span class="attr">oob_thread_pool.queue_max_size</span>=<span class="string">"100"</span></div><div class="line">         <span class="attr">oob_thread_pool.rejection_policy</span>=<span class="string">"discard"</span>/&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TCPPING</span> <span class="attr">async_discovery</span>=<span class="string">"true"</span></span></div><div class="line">             <span class="attr">initial_hosts</span>=<span class="string">"$&#123;jgroups.tcpping.initial_hosts:localhost[40000],localhost[40001]&#125;"</span></div><div class="line">             <span class="attr">port_range</span>=<span class="string">"1"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">MERGE3</span>  <span class="attr">min_interval</span>=<span class="string">"10000"</span></span></div><div class="line">             <span class="attr">max_interval</span>=<span class="string">"30000"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">FD_SOCK</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">FD</span> <span class="attr">timeout</span>=<span class="string">"3000"</span> <span class="attr">max_tries</span>=<span class="string">"3"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">VERIFY_SUSPECT</span> <span class="attr">timeout</span>=<span class="string">"1500"</span>  /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">BARRIER</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pbcast.NAKACK2</span> <span class="attr">use_mcast_xmit</span>=<span class="string">"false"</span></span></div><div class="line">                    <span class="attr">discard_delivered_msgs</span>=<span class="string">"true"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">UNICAST3</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pbcast.STABLE</span> <span class="attr">stability_delay</span>=<span class="string">"1000"</span> <span class="attr">desired_avg_gossip</span>=<span class="string">"50000"</span></span></div><div class="line">                   <span class="attr">max_bytes</span>=<span class="string">"4M"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">pbcast.GMS</span> <span class="attr">print_local_addr</span>=<span class="string">"true"</span> <span class="attr">join_timeout</span>=<span class="string">"2000"</span></span></div><div class="line">                <span class="attr">view_bundling</span>=<span class="string">"true"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">MFC</span> <span class="attr">max_credits</span>=<span class="string">"2M"</span></span></div><div class="line">         <span class="attr">min_threshold</span>=<span class="string">"0.4"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">FRAG2</span> <span class="attr">frag_size</span>=<span class="string">"60K"</span>  /&gt;</span></div><div class="line">    <span class="comment">&lt;!--RSVP resend_interval="2000" timeout="10000"/--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pbcast.STATE_TRANSFER</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">config</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="ehcache-xml"><a href="#ehcache-xml" class="headerlink" title="ehcache.xml"></a><code>ehcache.xml</code></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">		 <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"ehcache.xsd"</span> <span class="attr">updateCheck</span>=<span class="string">"false"</span></div><div class="line">		 <span class="attr">monitoring</span>=<span class="string">"autodetect"</span> <span class="attr">dynamicConfig</span>=<span class="string">"false"</span>&gt;</div><div class="line">	<span class="comment">&lt;!--start count --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">defaultCache</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"100000"</span> <span class="attr">eternal</span>=<span class="string">"true"</span></span></div><div class="line">				  <span class="attr">overflowToDisk</span>=<span class="string">"false"</span> <span class="attr">diskSpoolBufferSizeMB</span>=<span class="string">"30"</span> <span class="attr">maxElementsOnDisk</span>=<span class="string">"10000000"</span></div><div class="line">				  <span class="attr">diskPersistent</span>=<span class="string">"false"</span> <span class="attr">statistics</span>=<span class="string">"true"</span></div><div class="line">				  <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span> <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</div><div class="line">		<span class="tag">&lt;<span class="name">terracotta</span> <span class="attr">clustered</span>=<span class="string">"false"</span> /&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 默认采用失效通知策略，各节点独立维护自己的缓存，缓存发生变化时，通知其他节点清除 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">cacheEventListenerFactory</span></span></div><div class="line">				<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"</span></div><div class="line">				<span class="attr">properties</span>=<span class="string">"replicateAsynchronously=true, replicatePuts=false, replicateUpdates=false,</span></div><div class="line">			replicateUpdatesViaCopy=false, replicateRemovals=true "/&gt;</div><div class="line">		<span class="comment">&lt;!-- cacheEventListenerFactory属性properties说明 --&gt;</span></div><div class="line">		<span class="comment">&lt;!--</span></div><div class="line">		replicateAsynchronously : 对象同步是否异步完成，默认为true。如果比较紧急就设为false。</div><div class="line">		                          在一致性时间性要求不强的时候，设为异步可大大提供性能，因为它是异步立即返回的，而且可以批量提交。</div><div class="line">		replicateUpdatesViaCopy : 是否将对象变更复制到所有节点，还是只是发送一个失效信息，让对方该缓存失效，当对方需要该缓存时重新计算载入。</div><div class="line">		                          默认为true。鉴于对象复制的消耗挺大的，又有锁的问题，而且对方也未必需要该对象，所以此属性建议设为false。</div><div class="line">		                          如果业务上真的需要设为true时，就可考虑使用Terracotta了。</div><div class="line">		replicatePuts : 增加对象时是否同步，默认为true，如果replicateUpdatesViaCopy为false，选择了失效算法，所以replicatePuts 要设为false。</div><div class="line">		replicateUpdates : 修改对象时是否同步，默认为true。</div><div class="line">		replicateRemovals : 删除对象时是否同步，默认为true。</div><div class="line">		 --&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- 单独设置菜单的缓存，单个菜单文件100KB，避免上万登录用户全部缓存，一般设定为并发用户数1000-2000 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"SY_ORG_USER__MENU"</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"1000"</span></span></div><div class="line">		   <span class="attr">eternal</span>=<span class="string">"true"</span> <span class="attr">overflowToDisk</span>=<span class="string">"false"</span> <span class="attr">statistics</span>=<span class="string">"true"</span></div><div class="line">		   <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span> &gt;</div><div class="line">		<span class="comment">&lt;!-- 缓存集群同步策略：各节点独立，不同步 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">cacheEventListenerFactory</span></span></div><div class="line">		<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"</span></div><div class="line">		<span class="attr">properties</span>=<span class="string">"replicateAsynchronously=true, replicatePuts=false, replicateUpdates=false,</span></div><div class="line">		replicateUpdatesViaCopy=false, replicateRemovals=false "/&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">cache</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- 单独设置页面缓存，缓存时间5分钟一刷新 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"SimplePageCachingFilter"</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"2000"</span></span></div><div class="line">		   <span class="attr">eternal</span>=<span class="string">"false"</span> <span class="attr">overflowToDisk</span>=<span class="string">"false"</span> <span class="attr">timeToIdleSeconds</span>=<span class="string">"300"</span></div><div class="line">		   <span class="attr">timeToLiveSeconds</span>=<span class="string">"300"</span> <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LFU"</span> &gt;</div><div class="line">		<span class="comment">&lt;!-- 缓存集群同步策略：各节点独立，不同步 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">cacheEventListenerFactory</span></span></div><div class="line">				<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"</span></div><div class="line">				<span class="attr">properties</span>=<span class="string">"replicateAsynchronously=true, replicatePuts=false, replicateUpdates=false,</span></div><div class="line">			replicateUpdatesViaCopy=false, replicateRemovals=false "/&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">cache</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!--在线用户--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"ONLINE_USER"</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"50000"</span></span></div><div class="line">		   <span class="attr">eternal</span>=<span class="string">"true"</span> <span class="attr">overflowToDisk</span>=<span class="string">"false"</span> <span class="attr">statistics</span>=<span class="string">"true"</span> <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LFU"</span>&gt;</div><div class="line">		<span class="comment">&lt;!-- 缓存集群同步策略：各节点随时保持同步 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">cacheEventListenerFactory</span></span></div><div class="line">			<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"</span></div><div class="line">			<span class="attr">properties</span>=<span class="string">"replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,</span></div><div class="line">			replicateUpdatesViaCopy=true, replicateRemovals=true "/&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">cache</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- 集群 JGroup设置 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cacheManagerPeerProviderFactory</span> <span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"</span></span></div><div class="line">        <span class="attr">properties</span>=<span class="string">"jgroups_tcp.xml"</span> /&gt;</div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- ehcache monitor --&gt;</span></div><div class="line">	<span class="comment">&lt;!--&lt;cacheManagerPeerListenerFactory class="org.terracotta.ehcachedx.monitor.probe.ProbePeerListenerFactory"--&gt;</span></div><div class="line">	<span class="comment">&lt;!--								 properties="monitorAddress=localhost, monitorPort=9889, memoryMeasurement=true"/&gt;--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="调试和监控"><a href="#调试和监控" class="headerlink" title="调试和监控"></a>调试和监控</h3><h4 id="ehcache-debugger-1-7-1-jar"><a href="#ehcache-debugger-1-7-1-jar" class="headerlink" title="ehcache-debugger-1.7.1.jar"></a><code>ehcache-debugger-1.7.1.jar</code></h4><p><a href="http://www.ehcache.org/documentation/2.8/operations/remotedebugger.html" target="_blank" rel="external">http://www.ehcache.org/documentation/2.8/operations/remotedebugger.html</a><br>上面这篇是官方文档，下载到这个jar包，然后执行下面的命令，就可以监控具体缓存了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">例子：java -jar ehcache-debugger-1.7.1.jar ./../ehcache.xml _CACHE_C_OA_QJ_TYPE_DICT</div><div class="line">格式：java -jar ehcache-debugger-1.7.1.jar ehcache配置文件路径 缓存NAME（可选）</div></pre></td></tr></table></figure></p>
+<p>然后你就可以看到哗哗的日志了。</p>
+<h4 id="Debug断点"><a href="#Debug断点" class="headerlink" title="Debug断点"></a>Debug断点</h4><p>在类JGroupsCacheReceiver的receive方法打断点，可以监控节点获取组播消息的情况。</p>
+<h4 id="Ehcache-Monitor"><a href="#Ehcache-Monitor" class="headerlink" title="Ehcache-Monitor"></a>Ehcache-Monitor</h4><p>安装见：<a href="https://nail2008.github.io/2017/05/17/how-to-use-ehcache-monitor/">Ehcache-Monitor</a></p>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="http://www.jgroups.org/manual/index.html" target="_blank" rel="external">JGroups官方文档</a></p>
+<p>几篇不错的blog：<br><a href="http://blog.csdn.net/kindy1022/article/details/6681299" target="_blank" rel="external">http://blog.csdn.net/kindy1022/article/details/6681299</a><br><a href="https://my.oschina.net/u/866380/blog/501082" target="_blank" rel="external">https://my.oschina.net/u/866380/blog/501082</a><br><a href="http://www.cnblogs.com/fangfan/p/4042823.html" target="_blank" rel="external">http://www.cnblogs.com/fangfan/p/4042823.html</a><br><a href="http://blog.csdn.net/tengdazhang770960436/article/details/49947383" target="_blank" rel="external">http://blog.csdn.net/tengdazhang770960436/article/details/49947383</a>  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/17/how-to-use-ehcache-monitor/" itemprop="url">
                   Ehcache Monitor 安装及使用
                 </a>
@@ -310,8 +458,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
+                  <a href="/categories/服务端/" itemprop="url" rel="index">
+                    <span itemprop="name">服务端</span>
                   </a>
                 </span>
 
@@ -1399,7 +1547,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1407,7 +1555,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1416,7 +1564,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
