@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="redis,架构," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="诗和远方 永远存在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="丁丁爱历险">
-<meta property="og:url" content="https://nail2008.github.io/tags/html5/index.html">
+<meta name="description" content="本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。 资料架构Redis/Twisted系统整合 时序数据库   在云上搭建大规模实时数据流处理系统通过Netty通信，采集设备现场GPS数据,并存放在redis服务器Netty傻瓜教程（五）：不能不谈RedisRedis在游戏服务器中的应用阿里云redis   redis怎么做消息队列？ 测试Redis 的性能">
+<meta name="keywords" content="redis,架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于redis的服务架构（未成文）">
+<meta property="og:url" content="https://nail2008.github.io/2017/06/19/arch-based-redis/index.html">
 <meta property="og:site_name" content="丁丁爱历险">
-<meta property="og:description" content="诗和远方 永远存在">
+<meta property="og:description" content="本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。 资料架构Redis/Twisted系统整合 时序数据库   在云上搭建大规模实时数据流处理系统通过Netty通信，采集设备现场GPS数据,并存放在redis服务器Netty傻瓜教程（五）：不能不谈RedisRedis在游戏服务器中的应用阿里云redis   redis怎么做消息队列？ 测试Redis 的性能">
+<meta property="og:updated_time" content="2017-06-19T08:55:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="丁丁爱历险">
-<meta name="twitter:description" content="诗和远方 永远存在">
+<meta name="twitter:title" content="基于redis的服务架构（未成文）">
+<meta name="twitter:description" content="本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。 资料架构Redis/Twisted系统整合 时序数据库   在云上搭建大规模实时数据流处理系统通过Netty通信，采集设备现场GPS数据,并存放在redis服务器Netty傻瓜教程（五）：不能不谈RedisRedis在游戏服务器中的应用阿里云redis   redis怎么做消息队列？ 测试Redis 的性能">
 
 
 
@@ -116,7 +118,7 @@
   };
 </script>
 
-  <title> 标签: html5 | 丁丁爱历险 </title>
+  <title> 基于redis的服务架构（未成文） | 丁丁爱历险 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,46 +260,177 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        html5
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于redis的服务架构（未成文）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-19T16:51:16+08:00" content="2017-06-19">
+              2017-06-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/服务端/" itemprop="url" rel="index">
+                    <span itemprop="name">服务端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/19/arch-based-redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/19/arch-based-redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。</p>
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><a href="http://blog.sina.com.cn/s/blog_4680937f0102wsdj.html" target="_blank" rel="external">Redis/Twisted系统整合 </a><br><a href="https://cloud.baidu.com/product/tsdb.html?track=cp:nsem|pf:pc|pp:tsdb|pu:tsdb|ci:|kw:59248" target="_blank" rel="external">时序数据库</a>  </p>
+<p><a href="http://www.cnblogs.com/langtianya/p/4902461.html" target="_blank" rel="external">在云上搭建大规模实时数据流处理系统</a><br><a href="http://www.cnblogs.com/meslog/p/5180510.html" target="_blank" rel="external">通过Netty通信，采集设备现场GPS数据,并存放在redis服务器</a><br><a href="https://my.oschina.net/u/438393/blog/845527" target="_blank" rel="external">Netty傻瓜教程（五）：不能不谈Redis</a><br><a href="http://www.cnblogs.com/agent-k/p/Redis.html" target="_blank" rel="external">Redis在游戏服务器中的应用</a><br><a href="https://www.aliyun.com/product/kvstore?spm=5176.7114037.746101.1.uqLJwB" target="_blank" rel="external">阿里云redis</a>  </p>
+<p><a href="https://www.zhihu.com/question/20795043" target="_blank" rel="external">redis怎么做消息队列？</a></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><a href="http://blog.csdn.net/mindfloating/article/details/50381978" target="_blank" rel="external">Redis 的性能幻想与残酷现实</a>  </p>
+<p>知乎问题：<br>如何解决redis高并发客户端频繁time out？<br>现在业务上每天有5亿+的请求，平时redis的操作在2K+每秒左右。到了高峰有3K+，这时候客户端就会频繁的报connect time out的异常。<br>但是，资料上说redis可以达到10W每秒。3K远远不到w这个级别啊，请问有什么建议优化现在的情况么？   </p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><a href="http://www.importnew.com/19321.html" target="_blank" rel="external">Jedis对redis的操作详解</a><br><a href="http://www.cnblogs.com/liuling/p/2014-4-19-04.html" target="_blank" rel="external">Java中使用Jedis操作Redis</a>  </p>
+<p><a href="https://www.aliyun.com/zixun/content/2_62_1883753.html" target="_blank" rel="external">使用Redis之前5个必须了解的事情</a><br><a href="http://blog.csdn.net/opensure/article/details/51375961" target="_blank" rel="external">redis3.2新功能–GEO地理位置命令介绍</a><br><a href="http://blog.csdn.net/jone_lu/article/details/50772014" target="_blank" rel="external">redis 常用整理</a>  </p>
+<h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><p><a href="http://hello-nick-xu.iteye.com/category/314998" target="_blank" rel="external">Hello_Nick_Xu的redis系列文章</a>  </p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p><a href="https://www.oschina.net/search?scope=project&amp;q=redis" target="_blank" rel="external">各种redis相关项目-oschina</a>  </p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/25/html5-css3-support-in-old-browser/" itemprop="url">
-              
-                <span itemprop="name">老浏览器支持HTML5和CSS3</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-25T10:35:00+08:00"
-              content="2016-08-25" >
-          08-25
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+            <a href="/tags/架构/" rel="tag">#架构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/19/mysql-merge-partition/" rel="next" title="MySql merge分表">
+                <i class="fa fa-chevron-left"></i> MySql merge分表
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/06/19/arch-based-redis/"
+     data-title="基于redis的服务架构（未成文）"
+     data-content=""
+     data-url="https://nail2008.github.io/2017/06/19/arch-based-redis/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -305,6 +438,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/06/19/arch-based-redis/"
+           data-title="基于redis的服务架构（未成文）" data-url="https://nail2008.github.io/2017/06/19/arch-based-redis/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -324,8 +465,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/blue-logo.jpg"
@@ -393,6 +543,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">1.1.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">1.2.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合"><span class="nav-number">1.4.</span> <span class="nav-text">综合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">1.5.</span> <span class="nav-text">资源</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -489,6 +650,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
