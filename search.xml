@@ -4,6 +4,22 @@
   
     
     <entry>
+      <title><![CDATA[启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the 'mysql' or '_mysql']]></title>
+      <url>https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/</url>
+      <content type="html"><![CDATA[<p>Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’</p>
+<p>这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。</p>
+<p>解决方法：</p>
+<p>打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。</p>
+<p>mac 下运行  sudo chown -R  _mysql:wheel  /usr/local/mysql/data 。</p>
+<p>　　-c 显示更改的部分的信息</p>
+<p>　　-f 忽略错误信息</p>
+<p>　　-h 修复符号链接</p>
+<p>　　-R 处理指定目录以及其子目录下的所有文件</p>
+<p>　　-v 显示详细的处理信息</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[基于redis的服务架构（未成文）]]></title>
       <url>https://nail2008.github.io/2017/06/19/arch-based-redis/</url>
       <content type="html"><![CDATA[<p>本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。</p>

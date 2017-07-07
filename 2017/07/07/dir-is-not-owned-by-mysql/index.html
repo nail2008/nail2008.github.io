@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql,启动,异常," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="诗和远方 永远存在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="丁丁爱历险">
-<meta property="og:url" content="https://nail2008.github.io/tags/es6/index.html">
+<meta name="description" content="Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’ 这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。 解决方法： 打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。 mac 下运行  sudo c">
+<meta name="keywords" content="mysql,启动,异常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="启动 mysql 失败 Warning:The &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data directory is not owned by the &#39;mysql&#39; or &#39;_mysql&#39;">
+<meta property="og:url" content="https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/index.html">
 <meta property="og:site_name" content="丁丁爱历险">
-<meta property="og:description" content="诗和远方 永远存在">
+<meta property="og:description" content="Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’ 这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。 解决方法： 打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。 mac 下运行  sudo c">
+<meta property="og:updated_time" content="2017-07-07T01:35:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="丁丁爱历险">
-<meta name="twitter:description" content="诗和远方 永远存在">
+<meta name="twitter:title" content="启动 mysql 失败 Warning:The &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data directory is not owned by the &#39;mysql&#39; or &#39;_mysql&#39;">
+<meta name="twitter:description" content="Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’ 这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。 解决方法： 打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。 mac 下运行  sudo c">
 
 
 
@@ -116,7 +118,7 @@
   };
 </script>
 
-  <title> 标签: es6 | 丁丁爱历险 </title>
+  <title> 启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the 'mysql' or '_mysql' | 丁丁爱历险 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,46 +260,179 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        es6
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the 'mysql' or '_mysql'
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-07T09:32:48+08:00" content="2017-07-07">
+              2017-07-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/07/dir-is-not-owned-by-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/07/dir-is-not-owned-by-mysql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’</p>
+<p>这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。</p>
+<p>解决方法：</p>
+<p>打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。</p>
+<p>mac 下运行  sudo chown -R  _mysql:wheel  /usr/local/mysql/data 。</p>
+<p>　　-c 显示更改的部分的信息</p>
+<p>　　-f 忽略错误信息</p>
+<p>　　-h 修复符号链接</p>
+<p>　　-R 处理指定目录以及其子目录下的所有文件</p>
+<p>　　-v 显示详细的处理信息</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/07/08/react-es5-es6-diff/" itemprop="url">
-              
-                <span itemprop="name">使用es5和es6写React有什么变化</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-08T14:37:44+08:00"
-              content="2016-07-08" >
-          07-08
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+            <a href="/tags/启动/" rel="tag">#启动</a>
+          
+            <a href="/tags/异常/" rel="tag">#异常</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/19/arch-based-redis/" rel="next" title="基于redis的服务架构（未成文）">
+                <i class="fa fa-chevron-left"></i> 基于redis的服务架构（未成文）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/07/07/dir-is-not-owned-by-mysql/"
+     data-title="启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the 'mysql' or '_mysql'"
+     data-content=""
+     data-url="https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -305,6 +440,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/07/dir-is-not-owned-by-mysql/"
+           data-title="启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the 'mysql' or '_mysql'" data-url="https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -324,8 +467,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/blue-logo.jpg"
@@ -393,6 +545,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -489,6 +652,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

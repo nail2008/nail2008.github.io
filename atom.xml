@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nail2008.github.io/"/>
-  <updated>2017-06-19T08:55:49.000Z</updated>
+  <updated>2017-07-07T01:35:42.000Z</updated>
   <id>https://nail2008.github.io/</id>
   
   <author>
@@ -16,11 +16,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>启动 mysql 失败 Warning:The /usr/local/mysql/data directory is not owned by the &#39;mysql&#39; or &#39;_mysql&#39;</title>
+    <link href="https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/"/>
+    <id>https://nail2008.github.io/2017/07/07/dir-is-not-owned-by-mysql/</id>
+    <published>2017-07-07T01:32:48.000Z</published>
+    <updated>2017-07-07T01:35:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’</p>
+<p>这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。</p>
+<p>解决方法：</p>
+<p>打开终端运行 sudo chown -R mysql /usr/local/mysql/data 即可。</p>
+<p>mac 下运行  sudo chown -R  _mysql:wheel  /usr/local/mysql/data 。</p>
+<p>　　-c 显示更改的部分的信息</p>
+<p>　　-f 忽略错误信息</p>
+<p>　　-h 修复符号链接</p>
+<p>　　-R 处理指定目录以及其子目录下的所有文件</p>
+<p>　　-v 显示详细的处理信息</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’&lt;/p&gt;
+&lt;p&gt;这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://nail2008.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="https://nail2008.github.io/tags/mysql/"/>
+    
+      <category term="启动" scheme="https://nail2008.github.io/tags/%E5%90%AF%E5%8A%A8/"/>
+    
+      <category term="异常" scheme="https://nail2008.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于redis的服务架构（未成文）</title>
     <link href="https://nail2008.github.io/2017/06/19/arch-based-redis/"/>
     <id>https://nail2008.github.io/2017/06/19/arch-based-redis/</id>
     <published>2017-06-19T08:51:16.000Z</published>
-    <updated>2017-06-19T08:55:49.000Z</updated>
+    <updated>2017-06-19T09:16:11.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文探索Redis在企业服务架构中的作用，目前仅收集资料，后期总结心得，逐步完善知识体系。</p>
 <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><a href="http://blog.sina.com.cn/s/blog_4680937f0102wsdj.html" target="_blank" rel="external">Redis/Twisted系统整合 </a><br><a href="https://cloud.baidu.com/product/tsdb.html?track=cp:nsem|pf:pc|pp:tsdb|pu:tsdb|ci:|kw:59248" target="_blank" rel="external">时序数据库</a>  </p>
