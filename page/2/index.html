@@ -282,6 +282,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/10/shell-command-in-mac/" itemprop="url">
+                  Shell指令大全(Mac版)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T09:56:33+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/shell-command-in-mac/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/shell-command-in-mac/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>龟速积累中,按照命令首字母排序</p>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><ul>
+<li>查看22端口现在运行的情况 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i :22</div></pre></td></tr></table></figure>
+<ul>
+<li>查看root用户进程所打开的txt文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -a -u root -d txt</div></pre></td></tr></table></figure>
+<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html" target="_blank" rel="external">http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html</a><br><a href="http://www.cnblogs.com/rootq/articles/1401850.html" target="_blank" rel="external">http://www.cnblogs.com/rootq/articles/1401850.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/28/css-id-or-class/" itemprop="url">
                   CSS样式命名应该用id还是用class?
                 </a>
@@ -667,7 +798,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -684,7 +815,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
