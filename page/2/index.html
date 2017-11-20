@@ -282,6 +282,319 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/25/html5-css3-support-in-old-browser/" itemprop="url">
+                  老浏览器支持HTML5和CSS3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-25T10:35:00+08:00" content="2016-08-25">
+              2016-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/25/html5-css3-support-in-old-browser/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/25/html5-css3-support-in-old-browser/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="HTML5支持"><a href="#HTML5支持" class="headerlink" title="HTML5支持"></a>HTML5支持</h2><p>使用<strong>html5shiv</strong>可以使IE6、7、8等浏览器也支持HTML5，只要在页面引入下面的代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[if lt IE 9]&gt;</div><div class="line">    &lt;script src="bower_components/html5shiv/dist/html5shiv.js"&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure></p>
+<p>项目地址：<a href="https://github.com/aFarkas/html5shiv" target="_blank" rel="external">https://github.com/aFarkas/html5shiv</a><br>中文资料：<a href="http://www.zhangxinxu.com/wordpress/2013/02/github-html5shiv-readme-translate/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2013/02/github-html5shiv-readme-translate/</a></p>
+<h2 id="CSS3支持"><a href="#CSS3支持" class="headerlink" title="CSS3支持"></a>CSS3支持</h2><p>使用<strong>ie-css3.htc</strong>可以使老浏览器支持CSS3的大部分特性，<a href="http://www.cnblogs.com/platero/archive/2010/08/31/1870151.html" target="_blank" rel="external">IE中的CSS3不完全兼容方案</a></p>
+<h4 id="Opacity透明度"><a href="#Opacity透明度" class="headerlink" title="Opacity透明度"></a>Opacity透明度</h4><p>元素的透明度在IE中可以很方便的用滤镜来实现。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">background-color:green;</div><div class="line">opacity: .4;</div><div class="line">filter:progid:DXImageTransform.Microsoft.alpha(opacity=40);</div></pre></td></tr></table></figure></p>
+<p>这里半透明区域<br>opacity: .4;</p>
+<p>filter:alpha(opacity=40);</p>
+<h4 id="border-radius圆角-Box-Shadow盒阴影-Text-Shadow文字阴影"><a href="#border-radius圆角-Box-Shadow盒阴影-Text-Shadow文字阴影" class="headerlink" title="border-radius圆角/Box Shadow盒阴影/Text Shadow文字阴影"></a>border-radius圆角/Box Shadow盒阴影/Text Shadow文字阴影</h4><p>在IE中可以利用Vector Markup Language (VML)和javascript来实现这些效果，参见IE-CSS3，在引用了一个HTC文件后，在IE浏览器中就可以使用这三种CSS3属性了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-moz-border-radius</span>: 15<span class="selector-tag">px</span>; <span class="comment">/* Firefox */</span></div><div class="line"><span class="selector-tag">-webkit-border-radius</span>: 15<span class="selector-tag">px</span>; <span class="comment">/* Safari 、Chrome */</span></div><div class="line"><span class="selector-tag">border-radius</span>: 15<span class="selector-tag">px</span>; <span class="comment">/* Opera 10.5+, IE6+ 使用 IE-CSS3*/</span></div><div class="line"><span class="selector-tag">-moz-box-shadow</span>: 5<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> <span class="selector-id">#000</span>; <span class="comment">/* Firefox */</span></div><div class="line"><span class="selector-tag">-webkit-box-shadow</span>: 5<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> <span class="selector-id">#000</span>; <span class="comment">/* Safari、Chrome */</span></div><div class="line"><span class="selector-tag">box-shadow</span>: 5<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> 50<span class="selector-tag">px</span> <span class="selector-id">#000</span>; <span class="comment">/* Opera 10.5+，IE6+ 使用 IE-CSS3 */</span></div><div class="line"><span class="selector-tag">behavior</span>: <span class="selector-tag">url</span>(<span class="selector-tag">ie-css3</span><span class="selector-class">.htc</span>); <span class="comment">/*引用ie-css3.htc */</span></div></pre></td></tr></table></figure></p>
+<p>实际上，在IE中有滤镜来实现阴影(shadow)和投影(drop-shadow)效果的</p>
+<p>shadow会产生连续、渐变的阴影<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=145, Strength=10);</div></pre></td></tr></table></figure></p>
+<p>drop-shadow产生的阴影没有明暗变化<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filter:progid:DXImageTransform.Microsoft.DropShadow(Color="#6699CC",OffX="5",OffY="5",Positive="1");</div></pre></td></tr></table></figure></p>
+<p>滤镜似乎和现有的htc脚本有冲突，或者可以称之为特性：两者同时在一个元素上启用的时候，滤镜效果会转移到其子元素上</p>
+<h4 id="Gradients渐变"><a href="#Gradients渐变" class="headerlink" title="Gradients渐变"></a>Gradients渐变</h4><p>IE中提供了一个简单的渐变滤镜<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">background-image: -moz-linear-gradient(top, #444444, #999999); /* FF3.6 */</div><div class="line">background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #444444),color-stop(1, #999999)); /* Saf4+, Chrome */</div><div class="line">filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#444444', EndColorStr='#999999'); /* IE6+ */</div></pre></td></tr></table></figure></p>
+<p>在实现IE中的渐变很简单</p>
+<h4 id="RGBA透明度颜色背景"><a href="#RGBA透明度颜色背景" class="headerlink" title="RGBA透明度颜色背景"></a>RGBA透明度颜色背景</h4><p>渐变滤镜支持RGBA的颜色，startColorStr和EndColorStr的前两位是Alpha通道值。使用带alpha通道来模拟RGBA颜色背景的同时，应该去掉其background-color属性。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">background-color: rgba(0, 255, 0, 0.6); /* FF3+, Saf3+,Opera 10.10+, Chrome */</div><div class="line">filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#9900FF00',EndColorStr='#9900FF00'); /* IE6+*/</div></pre></td></tr></table></figure></p>
+<h4 id="Multiple-Backgrounds多重背景图片"><a href="#Multiple-Backgrounds多重背景图片" class="headerlink" title="Multiple Backgrounds多重背景图片"></a>Multiple Backgrounds多重背景图片</h4><p>支持CSS3多重背景图片的浏览器中可以用下面的语句来实现背景多重图片：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">background</span>: <span class="selector-tag">url</span>(<span class="selector-tag">bg-image-1</span><span class="selector-class">.gif</span>) <span class="selector-tag">center</span> <span class="selector-tag">center</span> <span class="selector-tag">no-repeat</span>, <span class="selector-tag">url</span>(<span class="selector-tag">bg-image-2</span><span class="selector-class">.gif</span>) <span class="selector-tag">top</span> <span class="selector-tag">left</span>;</div></pre></td></tr></table></figure></p>
+<p>要在IE中实现多背景图片，在需要在单独的IE hack样式表中加入下面的代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">background: transparent url(bg-image-1.gif) top left repeat;</div><div class="line">filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='bg-image-2.gif', sizingMethod='crop'); /* IE6+ */</div></pre></td></tr></table></figure></p>
+<p>CSS3浏览器的多重背景</p>
+<p>IE的多重背景</p>
+<h4 id="Tranformations-rotate旋转元素"><a href="#Tranformations-rotate旋转元素" class="headerlink" title="Tranformations/rotate旋转元素"></a>Tranformations/rotate旋转元素</h4><p>IE中有两个滤镜可以实现元素的旋转，BasicImage和Matrix，前者简单方便但是只能做90*n(n∈{1,2,3,4})度的旋转；Matrix滤镜功能强大，但是参数复杂。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-moz-transform: rotate(180deg);  /* FF3.5+ */</div><div class="line">-o-transform: rotate(180deg);  /* Opera 10.5 */</div><div class="line">-webkit-transform: rotate(180deg);  /* Saf3.1+, Chrome */</div><div class="line"> </div><div class="line">filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);</div><div class="line">filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',M11=-1, M12=-1.2246063538223772e-16, M21=1.2246063538223772e-16, M22=-1);</div></pre></td></tr></table></figure></p>
+<p>旋转也很简单</p>
+<h4 id="font-face服务器端字体"><a href="#font-face服务器端字体" class="headerlink" title="@font-face服务器端字体"></a>@font-face服务器端字体</h4><p>考虑到汉字字体的尺寸，这个CSS3的特性不算实用<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">font-family:'webFont';</div><div class="line">src:url('myfont.eot');/*IE6+*/</div><div class="line"> </div><div class="line">src:local('fontname'),/*字体名称*/</div><div class="line">url('myfont.woff') format('woff'),/*FF3.6*/</div><div class="line">url('myfont.ttf') format('truetype');/*saf3+,chrome,FF3.5,opera10+*/</div></pre></td></tr></table></figure></p>
+<p>字体声明并引用了以后，可以在网页的其他地方用font-family使用这一字体。</p>
+<p>可以在同一个元素上启用多个滤镜，如：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=145, Strength=5)progid:DXImageTransform.Microsoft.Alpha(opacity=40);</div></pre></td></tr></table></figure></p>
+<p>虽然一些用滤镜模仿CSS3的效果难称完美，但在一些情况下，运用这些技术能够让我们的代码更为简洁和统一</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/24/how-to-use-npm/" itemprop="url">
+                  Npm使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T09:05:53+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/24/how-to-use-npm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/how-to-use-npm/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="网上的教程"><a href="#网上的教程" class="headerlink" title="网上的教程"></a>网上的教程</h2><p>网上有很多,不废话了:</p>
+<ul>
+<li><a href="https://docs.npmjs.com/" target="_blank" rel="external">官方教程</a></li>
+<li><a href="http://www.cnblogs.com/fsjohnhuang/p/4178019.html" target="_blank" rel="external">NPM入了个门</a></li>
+<li><a href="http://www.runoob.com/nodejs/nodejs-npm.html" target="_blank" rel="external">菜鸟教程</a></li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="npm-ls-module-name"><a href="#npm-ls-module-name" class="headerlink" title="npm ls module_name"></a>npm ls module_name</h3><p>查看依赖的使用情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cdp-ui duanyiding$ npm ls jquery</div><div class="line">cdp-ui@0.0.1 /Users/duanyiding/WebstormProjects/cdp-ui</div><div class="line">`-- rc-queue-anim@0.12.4</div><div class="line">  `-- velocity-animate@1.2.3</div><div class="line">    `-- jquery@3.1.0</div></pre></td></tr></table></figure></p>
+<h3 id="npm-info-view-module-name"><a href="#npm-info-view-module-name" class="headerlink" title="npm info(view) module_name"></a>npm info(view) module_name</h3><p>列出详细信息，如果只想查看版本：npm info module_name versions  </p>
+<h3 id="npm-outdated"><a href="#npm-outdated" class="headerlink" title="npm outdated"></a>npm outdated</h3><p>检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新   </p>
+<h3 id="npm-root-g"><a href="#npm-root-g" class="headerlink" title="npm root -g"></a>npm root -g</h3><p>查看全局的包的安装路径  </p>
+<h2 id="常用命令简写"><a href="#常用命令简写" class="headerlink" title="常用命令简写"></a>常用命令简写</h2><ul>
+<li>-v: –version</li>
+<li>-h, -?, –help, -H: –usage</li>
+<li>-s, –silent: –loglevel silent</li>
+<li>-q, –quiet: –loglevel warn</li>
+<li>-d: –loglevel info</li>
+<li>-dd, –verbose: –loglevel verbose</li>
+<li>-ddd: –loglevel silly</li>
+<li>-g: –global</li>
+<li>-C: –prefix</li>
+<li>-l: –long</li>
+<li>-m: –message</li>
+<li>-p, –porcelain: –parseable</li>
+<li>-reg: –registry</li>
+<li>-f: –force</li>
+<li>-desc: –description</li>
+<li>-S: –save</li>
+<li>-D: –save-dev</li>
+<li>-O: –save-optional</li>
+<li>-B: –save-bundle</li>
+<li>-E: –save-exact</li>
+<li>-y: –yes</li>
+<li>-n: –yes false</li>
+<li>ll and la commands: ls –long</li>
+</ul>
+<h2 id="使用淘宝镜像"><a href="#使用淘宝镜像" class="headerlink" title="使用淘宝镜像"></a>使用淘宝镜像</h2><p>不使用cnpm命令行，但是使用淘宝镜像，有以下三种方式，推荐第三种：</p>
+<ol>
+<li><p>通过 config 配置指向国内镜像源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm config set registry http://registry.cnpmjs.org //配置指向源</div><div class="line">npm info express  //下载安装第三方包</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过 npm 命令指定下载源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm --registry http://registry.cnpmjs.org info express</div></pre></td></tr></table></figure>
+</li>
+<li><p>在配置文件 ~/.npmrc 文件写入源地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nano ~/.npmrc   //打开配置文件</div><div class="line">registry =https://registry.npm.taobao.org   //写入配置文件</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="网上说得不太清除的几个事儿"><a href="#网上说得不太清除的几个事儿" class="headerlink" title="网上说得不太清除的几个事儿"></a>网上说得不太清除的几个事儿</h2><h3 id="依赖版本中使用-和-的区别"><a href="#依赖版本中使用-和-的区别" class="headerlink" title="依赖版本中使用 ~ 和 ^ 的区别"></a>依赖版本中使用 ~ 和 ^ 的区别</h3><p>这个问题其实说的是<strong>语义化版本SemVer</strong>。<br><a href="http://www.u396.com/semver-range.html" target="_blank" rel="external">语义化版本（SemVer）的范围</a> 一文是网上搜到的质量较好的中文解释。<br>但其中对~的用法没说,解释如下:<br>假设版本号为:x.y.z  </p>
+<h4 id=""><a href="#" class="headerlink" title="~"></a>~</h4><p>~x 表示 x.不能变,后边的随便<br>~x.y 表示 x.y.不能变,后边的随便<br>~x.y.z 表示 x.y.不能变,后边的随便<br>~x.y.z-beta1 表示 ~x.y.z-不能变,后边的随便  </p>
+<h4 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h4><p>^x.y.z 表示x、y、z中从左往右,第一个非零位往左(包括该非零位)不能变,右边的随便  </p>
+<p>关于semver的一些资料:<br><a href="http://semver.org/" target="_blank" rel="external">http://semver.org/</a><br><a href="https://cnpmjs.org/package/semver" target="_blank" rel="external">https://cnpmjs.org/package/semver</a><br><a href="https://docs.npmjs.com/misc/semver" target="_blank" rel="external">https://docs.npmjs.com/misc/semver</a>   </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/10/shell-command-in-mac/" itemprop="url">
                   Shell指令大全(Mac版)
                 </a>
@@ -353,9 +666,13 @@
         
           
             <p>龟速积累中,按照命令首字母排序</p>
-<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
-<h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
-<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><ul>
+<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。</p>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">chmod [-cfvR] [--help] [--version] mode file... </div><div class="line"></div><div class="line">mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...][,...]，其中 </div><div class="line">u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。 </div><div class="line">+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。 </div><div class="line">r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该档案是个子目录或者该档案已经被设定过为可执行。 </div><div class="line">-c : 若该档案权限确实已经更改，才显示其更改动作 </div><div class="line">-f : 若该档案权限无法被更改也不要显示错误讯息 </div><div class="line">-v : 显示权限变更的详细资料 </div><div class="line">-R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更) </div><div class="line">--help : 显示辅助说明 </div><div class="line">--version : 显示版本</div></pre></td></tr></table></figure>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>获取该目录机器子目录下所有文件的所有权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 文件或目录</div></pre></td></tr></table></figure></p>
+<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a> </p>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明-1"><a href="#说明-1" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
+<h5 id="用法-1"><a href="#用法-1" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
+<h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ul>
 <li>查看22端口现在运行的情况 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i :22</div></pre></td></tr></table></figure>
@@ -363,7 +680,7 @@
 <li>查看root用户进程所打开的txt文件</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -a -u root -d txt</div></pre></td></tr></table></figure>
-<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html" target="_blank" rel="external">http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html</a><br><a href="http://www.cnblogs.com/rootq/articles/1401850.html" target="_blank" rel="external">http://www.cnblogs.com/rootq/articles/1401850.html</a></p>
+<h5 id="延伸阅读-1"><a href="#延伸阅读-1" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html" target="_blank" rel="external">http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html</a><br><a href="http://www.cnblogs.com/rootq/articles/1401850.html" target="_blank" rel="external">http://www.cnblogs.com/rootq/articles/1401850.html</a></p>
 
           
         
@@ -798,7 +1115,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -815,7 +1132,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

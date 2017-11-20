@@ -4,6 +4,99 @@
   
     
     <entry>
+      <title><![CDATA[Npm使用]]></title>
+      <url>https://nail2008.github.io/2017/09/30/how-to-use-yarn/</url>
+      <content type="html"><![CDATA[<h2 id="网上的教程"><a href="#网上的教程" class="headerlink" title="网上的教程"></a>网上的教程</h2><ul>
+<li><a href="https://yarn.bootcss.com/" target="_blank" rel="external">中文官方</a></li>
+<li><a href="http://www.jianshu.com/p/f05eabdf3ab6" target="_blank" rel="external">入门</a></li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="初始化一个新的项目"><a href="#初始化一个新的项目" class="headerlink" title="初始化一个新的项目"></a>初始化一个新的项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn init</div></pre></td></tr></table></figure>
+<h3 id="添加一个依赖包"><a href="#添加一个依赖包" class="headerlink" title="添加一个依赖包"></a>添加一个依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yarn add [package]</div><div class="line">yarn add [package]@[version]</div><div class="line">yarn add [package]@[tag]</div></pre></td></tr></table></figure>
+<h3 id="更新一个依赖包"><a href="#更新一个依赖包" class="headerlink" title="更新一个依赖包"></a>更新一个依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yarn upgrade [package]</div><div class="line">yarn upgrade [package]@[version]</div><div class="line">yarn upgrade [package]@[tag]</div></pre></td></tr></table></figure>
+<h3 id="删除一个依赖包"><a href="#删除一个依赖包" class="headerlink" title="删除一个依赖包"></a>删除一个依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn remove [package]</div></pre></td></tr></table></figure>
+<h3 id="安装所有的依赖包"><a href="#安装所有的依赖包" class="headerlink" title="安装所有的依赖包"></a>安装所有的依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn</div></pre></td></tr></table></figure>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn install</div></pre></td></tr></table></figure></p>
+<h3 id="查看包信息"><a href="#查看包信息" class="headerlink" title="查看包信息"></a>查看包信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn info react</div></pre></td></tr></table></figure>
+<h3 id="升级某个全局包"><a href="#升级某个全局包" class="headerlink" title="升级某个全局包"></a>升级某个全局包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn global upgrade generator-jhipster</div></pre></td></tr></table></figure>
+<h2 id="和-npm-对比"><a href="#和-npm-对比" class="headerlink" title="和 npm 对比"></a>和 npm 对比</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">NPM</th>
+<th style="text-align:left">YARN</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">npm init</td>
+<td style="text-align:left">yarn init</td>
+<td style="text-align:left">初始化某个项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm install/link</td>
+<td style="text-align:left">yarn install/link</td>
+<td style="text-align:left">默认的安装依赖操作</td>
+</tr>
+<tr>
+<td style="text-align:left">npm install taco —save</td>
+<td style="text-align:left">yarn add taco</td>
+<td style="text-align:left">安装某个依赖，并且默认保存到package.</td>
+</tr>
+<tr>
+<td style="text-align:left">npm uninstall taco —save</td>
+<td style="text-align:left">yarn remove taco</td>
+<td style="text-align:left">移除某个依赖项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm install taco —save-dev</td>
+<td style="text-align:left">yarn add taco —dev</td>
+<td style="text-align:left">安装某个开发时依赖项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm update taco —save</td>
+<td style="text-align:left">yarn upgrade taco</td>
+<td style="text-align:left">更新某个依赖项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm install taco –global</td>
+<td style="text-align:left">yarn global add taco</td>
+<td style="text-align:left">安装某个全局依赖项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm publish/login/logout</td>
+<td style="text-align:left">yarn publish/login/logout</td>
+<td style="text-align:left">发布/登录/登出，一系列NPM Registry操作</td>
+</tr>
+<tr>
+<td style="text-align:left">npm init</td>
+<td style="text-align:left">yarn init</td>
+<td style="text-align:left">初始化某个项目</td>
+</tr>
+<tr>
+<td style="text-align:left">npm run/test</td>
+<td style="text-align:left">yarn run/test</td>
+<td style="text-align:left">运行某个命令，可以在script脚本中去配置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用淘宝镜像"><a href="#使用淘宝镜像" class="headerlink" title="使用淘宝镜像"></a>使用淘宝镜像</h2><ol>
+<li><p>查看当前的源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yarn config get registry</div><div class="line"># -&gt; https://registry.yarnpkg.com</div></pre></td></tr></table></figure>
+</li>
+<li><p>改成taobao源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yarn config set registry &apos;https://registry.npm.taobao.org&apos;</div><div class="line"></div><div class="line">#yarn config v0.17.3</div><div class="line">#success Set &quot;registry&quot; to &quot;https://#registry.npm.taobao.org&quot;.</div><div class="line">#✨  Done in 0.06s.</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Oracle执行计划]]></title>
+      <url>https://nail2008.github.io/2017/08/01/how-to-explain-sql/</url>
+      <content type="html"><![CDATA[<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">--set autotrace on;</span></div><div class="line"></div><div class="line"><span class="comment">--Session级别启用收集</span></div><div class="line"><span class="keyword">alter</span> <span class="keyword">session</span> <span class="keyword">set</span> STATISTICS_LEVEL = ALL; <span class="comment">-- 捕捉下一次执行SQL的执行信息</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> d.dept_name,u.user_name <span class="keyword">from</span> sy_org_user u ,sy_org_dept d</div><div class="line"><span class="keyword">where</span> u.dept_code = d.dept_code;</div><div class="line"></div><div class="line"><span class="comment">-- 参数:SQL_ID,Child number,Format,</span></div><div class="line"><span class="comment">--select * from table(SYS.DBMS_XPLAN.DISPLAY_CURSOR(null,null,'ADVANCED ALLSTATS LAST PEEKED_BINDS'));</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span>(SYS.DBMS_XPLAN.DISPLAY_CURSOR(<span class="string">'bkx0s41y98z0c'</span>,<span class="literal">null</span>,<span class="string">'ADVANCED ALLSTATS LAST PEEKED_BINDS'</span>));</div><div class="line"></div><div class="line"><span class="comment">-- 下面讲解这三个参数的获取</span></div><div class="line"></div><div class="line">    <span class="comment">-- 获取SQL_ID,通过sql_text,获得相应的SQL_ID,这里为bkx0s41y98z0c</span></div><div class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> v$SQLAREA <span class="keyword">where</span> sql_text <span class="keyword">like</span> <span class="string">'select d.dept_name,u.user_name from sy_org_user u ,sy_org_dept d%'</span>;</div><div class="line">    </div><div class="line">    <span class="comment">-- 获取Child number,一般指定为null,获取所有的子游标.如果要特别获取,使用以下方式:</span></div><div class="line">        <span class="comment">-- 父游标</span></div><div class="line">        <span class="keyword">select</span> * <span class="keyword">from</span> v$SQLAREA <span class="keyword">where</span> sql_id = <span class="string">'bkx0s41y98z0c'</span>;</div><div class="line">        </div><div class="line">        <span class="comment">-- 子游标:执行计划和优化环境</span></div><div class="line">        <span class="keyword">select</span> * <span class="keyword">from</span> v$<span class="keyword">SQL</span> <span class="keyword">where</span> SQL_id = <span class="string">'bkx0s41y98z0c'</span>;</div><div class="line">        <span class="comment">-- 计划:</span></div><div class="line">        <span class="keyword">select</span> * <span class="keyword">from</span> v$SQL_PLAN <span class="keyword">where</span> SQL_id = <span class="string">'bkx0s41y98z0c'</span> ;</div><div class="line">        <span class="comment">-- 优化环境:</span></div><div class="line">        <span class="keyword">select</span> * <span class="keyword">from</span> v$SQL_OPTIMIZER_ENV <span class="keyword">where</span> SQL_id = <span class="string">'bkx0s41y98z0c'</span>;</div><div class="line">    </div><div class="line">    <span class="comment">-- 设置Format: 可以选ALLSTATS=IOSTATS+MEMSTATS</span></div><div class="line">       <span class="comment">-- IOSTATS 显示该游标累计执行的IO统计信息(Buffers, Reads)</span></div><div class="line">       <span class="comment">-- MEMSTATS 累计执行的PGA使用信息(Omem 1Mem Used-Mem)</span></div><div class="line">       <span class="comment">-- LAST 仅显示最后一次执行的统计信息</span></div><div class="line">       <span class="comment">-- Advanced 显示outline\Query Block Name\Column Projection等信息</span></div><div class="line">       <span class="comment">-- PEEKED_BINDS 打印解析时使用的绑定变量</span></div><div class="line">       <span class="comment">-- Typical 不打印PROJECTION,ALIAS</span></div><div class="line">       </div><div class="line">       </div><div class="line"><span class="comment">-- 语句级别收集</span></div><div class="line"><span class="keyword">select</span> <span class="comment">/*+ gather_plan_statistics*/</span> d.dept_name,u.user_name <span class="keyword">from</span> sy_org_user u ,sy_org_dept d</div><div class="line"><span class="keyword">where</span> u.dept_code = d.dept_code;</div><div class="line"><span class="comment">--收集all stats有额外的负载,结束后需要回设成默认值:</span></div><div class="line"><span class="keyword">alter</span> <span class="keyword">session</span> <span class="keyword">set</span> STATISTICS_LEVEL=TYPICAL;</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[开始使用Docker]]></title>
       <url>https://nail2008.github.io/2017/07/13/start-docker/</url>
       <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Docker-for-Mac"><a href="#Docker-for-Mac" class="headerlink" title="Docker for Mac"></a>Docker for Mac</h3><p>OSX 10.10以后在Mac上使用Docker变得极简单（不需要装虚拟机及其linux），下载安装即可。</p>
@@ -319,9 +412,13 @@
       <title><![CDATA[Shell指令大全(Mac版)]]></title>
       <url>https://nail2008.github.io/2016/08/10/shell-command-in-mac/</url>
       <content type="html"><![CDATA[<p>龟速积累中,按照命令首字母排序</p>
-<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
-<h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
-<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><ul>
+<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。</p>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">chmod [-cfvR] [--help] [--version] mode file... </div><div class="line"></div><div class="line">mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...][,...]，其中 </div><div class="line">u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。 </div><div class="line">+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。 </div><div class="line">r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该档案是个子目录或者该档案已经被设定过为可执行。 </div><div class="line">-c : 若该档案权限确实已经更改，才显示其更改动作 </div><div class="line">-f : 若该档案权限无法被更改也不要显示错误讯息 </div><div class="line">-v : 显示权限变更的详细资料 </div><div class="line">-R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更) </div><div class="line">--help : 显示辅助说明 </div><div class="line">--version : 显示版本</div></pre></td></tr></table></figure>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>获取该目录机器子目录下所有文件的所有权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 文件或目录</div></pre></td></tr></table></figure></p>
+<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a> </p>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明-1"><a href="#说明-1" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
+<h5 id="用法-1"><a href="#用法-1" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
+<h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ul>
 <li>查看22端口现在运行的情况 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i :22</div></pre></td></tr></table></figure>
@@ -329,7 +426,7 @@
 <li>查看root用户进程所打开的txt文件</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -a -u root -d txt</div></pre></td></tr></table></figure>
-<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html" target="_blank" rel="external">http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html</a><br><a href="http://www.cnblogs.com/rootq/articles/1401850.html" target="_blank" rel="external">http://www.cnblogs.com/rootq/articles/1401850.html</a></p>
+<h5 id="延伸阅读-1"><a href="#延伸阅读-1" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html" target="_blank" rel="external">http://www.cnblogs.com/mydomain/archive/2011/09/27/2193560.html</a><br><a href="http://www.cnblogs.com/rootq/articles/1401850.html" target="_blank" rel="external">http://www.cnblogs.com/rootq/articles/1401850.html</a></p>
 ]]></content>
     </entry>
     
