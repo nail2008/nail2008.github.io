@@ -7,7 +7,7 @@
       <title><![CDATA[UML类图中的关系]]></title>
       <url>https://nail2008.github.io/2018/03/14/UML-Class-Diagram-Relations/</url>
       <content type="html"><![CDATA[<p>在软件设计过程和源码学习时，经常会用到UML类图。<br>通常对依赖、继承和实现没有什么问题，但正确区分理解关联、组合、聚合的作用和差异常容易搞迷糊。<br>需要说明一下，这篇总结并不是入门，是对关键点或是被忽略的内容的一个总结。主要参考wikipedia上的说明，注意英文版和中文版不太一样，某些说法上不统一，以英文版为准。</p>
-<h2 id="UML类图中的关系"><a href="#UML类图中的关系" class="headerlink" title="UML类图中的关系"></a>UML类图中的关系</h2><p><img src="./2018-03-14-UML-Class-Diagram-Relations/umlnotations.png" alt="uml notations"></p>
+<h2 id="UML类图中的关系"><a href="#UML类图中的关系" class="headerlink" title="UML类图中的关系"></a>UML类图中的关系</h2><img src="/2018/03/14/UML-Class-Diagram-Relations/umlnotations.png" alt="UML Notations" title="UML Notations">
 <h3 id="继承-Inheritance"><a href="#继承-Inheritance" class="headerlink" title="继承 Inheritance"></a>继承 Inheritance</h3><p>继承指的是一个类（称为子类、子接口）继承另外的一个类（称为基类、父类、父接口）的功能，并可以增加它自己的新功能的能力。  </p>
 <p>需要提一下常看到的另一个词：泛化（Generalization）</p>
 <p>如果说继承是子类向父类继承，那么泛化就是与继承的反方向。比如：</p>
@@ -26,7 +26,7 @@
 <p>组成是一种更强大的关联。“整体”负责创建或销毁其“部分”。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apartment</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Room bedroom;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apartment</span><span class="params">()</span> </span>&#123;</div><div class="line">        bedroom = <span class="keyword">new</span> Room();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="关联、聚合、组成的区别"><a href="#关联、聚合、组成的区别" class="headerlink" title="关联、聚合、组成的区别"></a>关联、聚合、组成的区别</h2><p>这里要强调一点，看了不少资料，只有wikipedia和Stack Overflow上明确表达了上面提到过的关系：聚合、组成是两种程度更紧递紧的关联，如下图。我觉得是靠谱的，在中文资料中基本没提到过这个。</p>
-<p><img src="2018-03-14-UML-Class-Diagram-Relations/jNyV5.jpg" alt="uml notations"></p>
+<img src="/2018/03/14/UML-Class-Diagram-Relations/jNyV5.jpg" alt="三者关系图" title="三者关系图">
 <table>
 <thead>
 <tr>
@@ -199,8 +199,7 @@
       <url>https://nail2008.github.io/2017/07/11/start-rabbitmq/</url>
       <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>mac下使用Homebrew安装   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install rabbitmq</div></pre></td></tr></table></figure>
-<p><img src="2017-07-11-start-rabbitmq/install.png" alt="install.png"></p>
-<img src="/2017/07/11/start-rabbitmq/install.png" alt="This is an example image" title="This is an example image">
+<img src="/2017/07/11/start-rabbitmq/install.png" alt="安装步骤" title="安装步骤">
 <p>默认安装至<code>/usr/local/opt/rabbitmq</code>     </p>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><h3 id="配置自启动"><a href="#配置自启动" class="headerlink" title="配置自启动"></a>配置自启动</h3><p>见上图两条命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">配置开机自启动:</div><div class="line">  ln -sfv /usr/local/opt/rabbitmq/*.plist ~/Library/LaunchAgents</div><div class="line">然后启动它:</div><div class="line">  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist</div></pre></td></tr></table></figure></p>
 <h3 id="手动启动"><a href="#手动启动" class="headerlink" title="手动启动"></a>手动启动</h3><p>当然我们的mac不是服务器，开发时使用下面的手动启动就可以了</p>
