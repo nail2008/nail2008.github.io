@@ -200,6 +200,7 @@
       <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>mac下使用Homebrew安装   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install rabbitmq</div></pre></td></tr></table></figure>
 <p><img src="2017-07-11-start-rabbitmq/install.png" alt="install.png"></p>
+
 <p>默认安装至<code>/usr/local/opt/rabbitmq</code>     </p>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><h3 id="配置自启动"><a href="#配置自启动" class="headerlink" title="配置自启动"></a>配置自启动</h3><p>见上图两条命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">配置开机自启动:</div><div class="line">  ln -sfv /usr/local/opt/rabbitmq/*.plist ~/Library/LaunchAgents</div><div class="line">然后启动它:</div><div class="line">  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist</div></pre></td></tr></table></figure></p>
 <h3 id="手动启动"><a href="#手动启动" class="headerlink" title="手动启动"></a>手动启动</h3><p>当然我们的mac不是服务器，开发时使用下面的手动启动就可以了</p>
