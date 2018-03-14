@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nail2008.github.io/"/>
-  <updated>2017-09-30T02:54:02.000Z</updated>
+  <updated>2018-03-14T09:30:26.000Z</updated>
   <id>https://nail2008.github.io/</id>
   
   <author>
@@ -14,6 +14,95 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UML类图中的关系</title>
+    <link href="https://nail2008.github.io/2018/03/14/UML-Class-Diagram-Relations/"/>
+    <id>https://nail2008.github.io/2018/03/14/UML-Class-Diagram-Relations/</id>
+    <published>2018-03-14T02:16:56.000Z</published>
+    <updated>2018-03-14T09:30:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在软件设计过程和源码学习时，经常会用到UML类图。<br>通常对依赖、继承和实现没有什么问题，但正确区分理解关联、组合、聚合的作用和差异常容易搞迷糊。<br>需要说明一下，这篇总结并不是入门，是对关键点或是被忽略的内容的一个总结。主要参考wikipedia上的说明，注意英文版和中文版不太一样，某些说法上不统一，以英文版为准。</p>
+<h2 id="UML类图中的关系"><a href="#UML类图中的关系" class="headerlink" title="UML类图中的关系"></a>UML类图中的关系</h2><p><img src="2018-03-14-UML-Class-Diagram-Relations/Uml_class_relation_arrows_en.svg.png" alt="uml notations"></p>
+<h3 id="继承-Inheritance"><a href="#继承-Inheritance" class="headerlink" title="继承 Inheritance"></a>继承 Inheritance</h3><p>继承指的是一个类（称为子类、子接口）继承另外的一个类（称为基类、父类、父接口）的功能，并可以增加它自己的新功能的能力。  </p>
+<p>需要提一下常看到的另一个词：泛化（Generalization）</p>
+<p>如果说继承是子类向父类继承，那么泛化就是与继承的反方向。比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Animal a = <span class="keyword">new</span> Dog();</div></pre></td></tr></table></figure>
+<h3 id="实现-Realization-Implementation"><a href="#实现-Realization-Implementation" class="headerlink" title="实现 Realization/Implementation"></a>实现 Realization/Implementation</h3><p>没啥好说的，理解下面向接口编程、规约这些词的含义就明白为什么要用接口了。</p>
+<h3 id="依赖-Dependency"><a href="#依赖-Dependency" class="headerlink" title="依赖 Dependency"></a>依赖 Dependency</h3><p>A uses a B </p>
+<p>类A用到了类B，被依赖的对象只是作为一种工具在使用，而并不持有对它的引用。而这种使用关系是具有偶然性、临时性的、单向的、非常弱的，但是B类的变化会影响到A；<br>表现在代码层面，为类B作为参数被类A在某个method（方法）中使用。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 选课服务</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnrollmentService</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Record <span class="title">enroll</span><span class="params">(Student s, Course c)</span></span>&#123;</div><div class="line">        Record r = <span class="keyword">new</span> Record(s,c);</div><div class="line">        r.save();</div><div class="line">        <span class="keyword">return</span> r;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="关联-Association"><a href="#关联-Association" class="headerlink" title="关联 Association"></a>关联 Association</h3><p>A has a B + 只是用到基本没啥从属关系</p>
+<p>关联代表一系列的连接。有四种：双向，单向，聚合（包括合成、聚合）和反射。<br>双向举个例子：机组和航班。<br>其他的后面再说。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Customer customer;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="聚合-Aggregation"><a href="#聚合-Aggregation" class="headerlink" title="聚合 Aggregation"></a>聚合 Aggregation</h3><p>A has a B + 整体——部分 + 但个体独立</p>
+<p>聚合是一种关联。聚合是一个较大的“整体”类中包含一个或多个较小的“部分”类的关系。相反，较小的“部分”类是“整个”较大类的一部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Playlist</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Song&gt; songs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="组成-组合-合成-Composition"><a href="#组成-组合-合成-Composition" class="headerlink" title="组成/组合/合成 Composition"></a>组成/组合/合成 Composition</h3><p>A has a B + 整体——部分 + ownership 同生共死</p>
+<p>组成是一种更强大的关联。“整体”负责创建或销毁其“部分”。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apartment</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Room bedroom;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apartment</span><span class="params">()</span> </span>&#123;</div><div class="line">        bedroom = <span class="keyword">new</span> Room();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="关联、聚合、组成的区别"><a href="#关联、聚合、组成的区别" class="headerlink" title="关联、聚合、组成的区别"></a>关联、聚合、组成的区别</h2><p>这里要强调一点，看了不少资料，只有wikipedia和Stack Overflow上明确表达了上面提到过的关系：聚合、组成是两种程度更紧递紧的关联，如下图。我觉得是靠谱的，在中文资料中基本没提到过这个。</p>
+<p><img src="2018-03-14-UML-Class-Diagram-Relations/jNyV5.jpg" alt="uml notations"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">聚合</th>
+<th style="text-align:left">组成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">生命周期</td>
+<td style="text-align:left">各自拥有各自的生命周期</td>
+<td style="text-align:left">都使用owner的生命周期</td>
+</tr>
+<tr>
+<td style="text-align:left">子对象</td>
+<td style="text-align:left">子对象们都属于一个独立的父对象</td>
+<td style="text-align:left">子对象们都属于一个独立的父对象</td>
+</tr>
+<tr>
+<td style="text-align:left">关系</td>
+<td style="text-align:left">Has—A</td>
+<td style="text-align:left">Owns</td>
+</tr>
+<tr>
+<td style="text-align:left">性质</td>
+<td style="text-align:left">collection</td>
+<td style="text-align:left">mixture</td>
+</tr>
+<tr>
+<td style="text-align:left">举例</td>
+<td style="text-align:left">车和司机</td>
+<td style="text-align:left">车和车轮</td>
+</tr>
+</tbody>
+</table>
+<p>最后说下个人的一点体会：  </p>
+<ol>
+<li>三者区别主要在强度上，可以用强度高的表述就不用强度低的表述。</li>
+<li>聚合和组成如果分不清的时候不要太纠结，不一定一定能从代码层面分清楚，业务上了解关系就可以了。</li>
+<li>关联关系，甚至是聚合关系，通常在类图中不会都展示出来，只展示关键的就行了。比如大雁——雁群这种，不画出来关系也很明确。</li>
+<li>读代码更重要的是看抽象（继承、实现），区分聚合和组成其实意义不大。</li>
+</ol>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="https://en.wikipedia.org/wiki/Class_diagram" target="_blank" rel="external">wiki英文</a><br><a href="https://zh.wikipedia.org/wiki/%E9%A1%9E%E5%88%A5%E5%9C%96" target="_blank" rel="external">wiki中文</a><br><a href="http://www.uml.org.cn/oobject/201609092.asp" target="_blank" rel="external">UML实践详细经典教程</a><br><a href="https://stackoverflow.com/questions/885937/what-is-the-difference-between-association-aggregation-and-composition" target="_blank" rel="external">What is the difference between association, aggregation and composition?</a><br><a href="http://blog.csdn.net/cjf1002361126/article/details/52750668" target="_blank" rel="external">UML类图java代码实现</a>  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在软件设计过程和源码学习时，经常会用到UML类图。&lt;br&gt;通常对依赖、继承和实现没有什么问题，但正确区分理解关联、组合、聚合的作用和差异常容易搞迷糊。&lt;br&gt;需要说明一下，这篇总结并不是入门，是对关键点或是被忽略的内容的一个总结。主要参考wikipedia上的说明，注意英文
+    
+    </summary>
+    
+      <category term="软件设计" scheme="https://nail2008.github.io/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="UML" scheme="https://nail2008.github.io/tags/UML/"/>
+    
+      <category term="Class Diagram" scheme="https://nail2008.github.io/tags/Class-Diagram/"/>
+    
+  </entry>
   
   <entry>
     <title>Npm使用</title>
@@ -661,13 +750,14 @@
     <link href="https://nail2008.github.io/2016/08/10/shell-command-in-mac/"/>
     <id>https://nail2008.github.io/2016/08/10/shell-command-in-mac/</id>
     <published>2016-08-10T01:56:33.000Z</published>
-    <updated>2017-11-20T06:50:33.000Z</updated>
+    <updated>2018-03-07T08:05:19.000Z</updated>
     
     <content type="html"><![CDATA[<p>龟速积累中,按照命令首字母排序</p>
 <h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。</p>
 <h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">chmod [-cfvR] [--help] [--version] mode file... </div><div class="line"></div><div class="line">mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...][,...]，其中 </div><div class="line">u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。 </div><div class="line">+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。 </div><div class="line">r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该档案是个子目录或者该档案已经被设定过为可执行。 </div><div class="line">-c : 若该档案权限确实已经更改，才显示其更改动作 </div><div class="line">-f : 若该档案权限无法被更改也不要显示错误讯息 </div><div class="line">-v : 显示权限变更的详细资料 </div><div class="line">-R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更) </div><div class="line">--help : 显示辅助说明 </div><div class="line">--version : 显示版本</div></pre></td></tr></table></figure>
 <h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>获取该目录机器子目录下所有文件的所有权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 文件或目录</div></pre></td></tr></table></figure></p>
-<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a> </p>
+<p>递归地给directory目录下所有文件和子目录的属主分配读的权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R u+r directory</div></pre></td></tr></table></figure></p>
+<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a><br><a href="https://zhidao.baidu.com/question/1667808990925980347.html" target="_blank" rel="external">https://zhidao.baidu.com/question/1667808990925980347.html</a></p>
 <h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明-1"><a href="#说明-1" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
 <h5 id="用法-1"><a href="#用法-1" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
 <h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ul>

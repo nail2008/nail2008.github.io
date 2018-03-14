@@ -97,7 +97,7 @@
 <meta property="og:url" content="https://nail2008.github.io/2016/08/10/shell-command-in-mac/index.html">
 <meta property="og:site_name" content="丁丁爱历险">
 <meta property="og:description" content="龟速积累中,按照命令首字母排序 chmod说明:Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。 用法:123456789101112chmod [-cfvR] [--help] [--version] mode file... mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...]">
-<meta property="og:updated_time" content="2017-11-20T06:50:33.000Z">
+<meta property="og:updated_time" content="2018-03-07T08:05:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell指令大全(Mac版)">
 <meta name="twitter:description" content="龟速积累中,按照命令首字母排序 chmod说明:Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。 用法:123456789101112chmod [-cfvR] [--help] [--version] mode file... mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...]">
@@ -351,7 +351,8 @@
 <h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>Linux/Unix 的档案调用权限分为三级 : 档案拥有者、群组、其他。利用 chmod 可以藉以控制档案如何被他人所调用。</p>
 <h5 id="用法"><a href="#用法" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">chmod [-cfvR] [--help] [--version] mode file... </div><div class="line"></div><div class="line">mode : 权限设定字串，格式如下 : [ugoa...][[+-=][rwxX]...][,...]，其中 </div><div class="line">u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。 </div><div class="line">+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。 </div><div class="line">r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该档案是个子目录或者该档案已经被设定过为可执行。 </div><div class="line">-c : 若该档案权限确实已经更改，才显示其更改动作 </div><div class="line">-f : 若该档案权限无法被更改也不要显示错误讯息 </div><div class="line">-v : 显示权限变更的详细资料 </div><div class="line">-R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更) </div><div class="line">--help : 显示辅助说明 </div><div class="line">--version : 显示版本</div></pre></td></tr></table></figure>
 <h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>获取该目录机器子目录下所有文件的所有权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 文件或目录</div></pre></td></tr></table></figure></p>
-<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a> </p>
+<p>递归地给directory目录下所有文件和子目录的属主分配读的权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -R u+r directory</div></pre></td></tr></table></figure></p>
+<h5 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读:"></a>延伸阅读:</h5><p><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-comm-chmod.html</a><br><a href="https://zhidao.baidu.com/question/1667808990925980347.html" target="_blank" rel="external">https://zhidao.baidu.com/question/1667808990925980347.html</a></p>
 <h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><h5 id="说明-1"><a href="#说明-1" class="headerlink" title="说明:"></a>说明:</h5><p>lsof（list open file）是一个列出当前系统打开文件的工具。<strong>在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件</strong>。所以如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。因为应用程序打开文件的描述符列表提供了大量关于这个应用程序本身的信息，因此通过lsof工具能够查看这个列表对系统监测以及排错将是很有帮助的。</p>
 <h5 id="用法-1"><a href="#用法-1" class="headerlink" title="用法:"></a>用法:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lsof  filename 显示打开指定文件的所有进程 </div><div class="line">lsof -a 表示两个参数都必须满足时才显示结果 </div><div class="line">lsof -c string   显示COMMAND列中包含指定字符的进程所有打开的文件 </div><div class="line">lsof -u username  显示所属user进程打开的文件 </div><div class="line">lsof -g gid 显示归属gid的进程情况 </div><div class="line">lsof +d /DIR/ 显示目录下被进程打开的文件 </div><div class="line">lsof +D /DIR/ 同上，但是会搜索目录下的所有目录，时间相对较长 </div><div class="line">lsof -d FD 显示指定文件描述符的进程 </div><div class="line">lsof -n 不将IP转换为hostname，缺省是不加上-n参数 </div><div class="line">lsof -i 用以显示符合条件的进程情况 </div><div class="line">lsof -i[46] [protocol][@hostname|hostaddr][:service|port] </div><div class="line">            46 --&gt; IPv4 or IPv6 </div><div class="line">            protocol --&gt; TCP or UDP </div><div class="line">            hostname --&gt; Internet host name </div><div class="line">            hostaddr --&gt; IPv4地址 </div><div class="line">            service --&gt; /etc/service中的 service name (可以不只一个) </div><div class="line">            port --&gt; 端口号 (可以不只一个)</div></pre></td></tr></table></figure>
 <h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ul>
@@ -498,7 +499,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -506,7 +507,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -515,7 +516,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -581,7 +582,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
