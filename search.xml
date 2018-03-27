@@ -179,6 +179,8 @@
 <li>记住<code>您的专属加速器地址</code></li>
 <li>打开Docker for Mac。Preferences–&gt;Daemon–&gt;Basic–&gt;Registry mirrors，点+，将你的地址贴到这里。然后Apply&amp;Restart。</li>
 </ol>
+<h2 id="使用DaoCloud加速器（更新于2018-03-27）"><a href="#使用DaoCloud加速器（更新于2018-03-27）" class="headerlink" title="使用DaoCloud加速器（更新于2018-03-27）"></a>使用DaoCloud加速器（更新于2018-03-27）</h2><p>最新发现阿里云加速器不好使了，代理会报错，尝试了https改成http也不行。</p>
+<p>换成DaoCloud的加速器后恢复正常，超快。注意要更新Docker for Mac到18+版本。</p>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker version</div></pre></td></tr></table></figure>
 <h3 id="搜索可用docker镜像"><a href="#搜索可用docker镜像" class="headerlink" title="搜索可用docker镜像"></a>搜索可用docker镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker search 镜像名字</div></pre></td></tr></table></figure>
 <h3 id="下载容器镜像"><a href="#下载容器镜像" class="headerlink" title="下载容器镜像"></a>下载容器镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull 用户名/镜像名</div></pre></td></tr></table></figure>
